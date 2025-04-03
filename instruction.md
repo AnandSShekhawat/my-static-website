@@ -45,10 +45,10 @@ OpenJDK 64-Bit Server VM (build 17.0.13+11-Debian-2, mixed mode, sharing)
 #9. Install Jenkins: 
 ```
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
-  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
-  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
-  /etc/apt/sources.list.d/jenkins.list > /dev/null
+https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+/etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
 sudo apt-get install jenkins
 ```
@@ -62,15 +62,15 @@ Open a browser and go to http://<public ip>:8080.
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
-#12. Install Required Plugins:
+#12. Install Required Plugins:  
 Go to "Manage Jenkins" > "Manage Plugins" > "Available".  
 Search for and install:  
 GitHub Integration Plugin: For GitHub connectivity.  
 Pipeline Plugin: For defining the pipeline (optional, often pre-installed).  
 Restart Jenkins if prompted.
 
-#13. Step 3: Set Up GitHub Repository
-Create a Repository:
+#13. Step 3: Set Up GitHub Repository  
+Create a Repository:  
 On GitHub, create a new repository (e.g., my-static-website).  
 Initialize it with a basic index.html:  
 ```
@@ -84,7 +84,7 @@ Initialize it with a basic index.html:
 ```
 Commit and push this file to the main branch.
 
-#14. Generate SSH Keys for Jenkins:
+#14. Generate SSH Keys for Jenkins:  
 On the VM, generate an SSH key pair
 ```
 ssh-keygen -t rsa -b 4096 -C "jenkins@azurevm" -f ~/.ssh/jenkins_key
@@ -97,7 +97,7 @@ cat .ssh/jenkins_key.pub
 GitHub > Repository > Settings > Deploy keys > Add deploy key.  
 Paste the public key and enable "Allow write access."  
 
-#15. Configure Jenkins SSH:
+#15. Configure Jenkins SSH:  
 In Jenkins, go to "Manage Jenkins" > "Manage Credentials" > "System" > "Global credentials" > "Add Credentials".  
 Set:
 ```  
@@ -175,9 +175,9 @@ Explanation:
 This error happens because Jenkins is trying to use sudo in a non-interactive shell, and it requires a password.  
 Here’s how you can fix it:
 
-Solution:
-```
+Solution:  
 Allow Jenkins to Run sudo Without a Password
+```
 sudo visudo
 Add the following line at the bottom (replace jenkins with your actual Jenkins user if it's different):
 jenkins ALL=(ALL) NOPASSWD: /bin/cp, /bin/systemctl restart nginx
@@ -186,7 +186,7 @@ sudo systemctl restart jenkins
 ```
 Build now : Successfull
 
-#19. GitHub Configuration:
+#19. GitHub Configuration:  
 Go to your GitHub repository → Settings → Webhooks
 Add webhook:  
 Payload URL: http://your-vm-ip:8080/github-webhook/  
