@@ -1,4 +1,4 @@
-########## Beginning ##########  
+## Beginning  
 #1. Update the package list and install Nginx:
 ```
 sudo apt update  
@@ -154,8 +154,8 @@ Run the following command:
 ```
 ps aux | grep jenkins
 ```
-#Usually, Jenkins runs under the user jenkins.  
-#Change the ownership of /var/www/mywebsite/ to the Jenkins user:  
+Usually, Jenkins runs under the user jenkins.  
+Change the ownership of /var/www/mywebsite/ to the Jenkins user:  
 ```
 sudo chown -R jenkins:jenkins /var/www/mywebsite/
 ```
@@ -177,11 +177,11 @@ Here’s how you can fix it:
 
 Solution:
 ```
-#Allow Jenkins to Run sudo Without a Password
+Allow Jenkins to Run sudo Without a Password
 sudo visudo
-#Add the following line at the bottom (replace jenkins with your actual Jenkins user if it's different):
+Add the following line at the bottom (replace jenkins with your actual Jenkins user if it's different):
 jenkins ALL=(ALL) NOPASSWD: /bin/cp, /bin/systemctl restart nginx
-#Save and exit (CTRL + X, then Y, then Enter).
+Save and exit (CTRL + X, then Y, then Enter).
 sudo systemctl restart jenkins
 ```
 Build now : Successfull
@@ -197,7 +197,7 @@ Select "Push events"
 add and commit changes and push the changes to the repo,  
 jenkins will automatically trigger the build and deploy the changes.  
 
-########## SUCCESS ##########
+## SUCCESS!! 
 
 
 
